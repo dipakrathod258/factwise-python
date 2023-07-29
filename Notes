@@ -1,0 +1,72 @@
+Tech Stack:
+
+- FastAPI
+- SQL
+
+
+MySQL Schema:
+
+project_boards:
+	PROJECT_BOARD_STATUSES = [
+	(0, "OPEN"),
+	(1, "CLOSED"),
+	]
+	id:
+	name: unique | max: 64 chars
+	description: max: 128 chars
+	team_id -> foreign key to team table
+	creation_time: datetimestamp
+	end_time: datetimestamp
+	status: 1
+
+	Task1:
+	Task2
+	Task3
+
+tasks:
+	TASK_STATUSES = [
+	(1,"OPEN"),
+	(1,"IN_PROGRESS"),
+	(1,"COMPLETE")
+	]
+	id: 
+	title: unique for a board | max: 64 characters
+	description: max: 128 characters
+	user_id: foreign key to User table
+	creation_time
+	status: 
+
+    Constraints:
+    * Can only add task to an OPEN board
+
+
+teams:
+	id: 
+	name: unique | max:64 chars
+	description: max: 128 chars
+	user_id(admin): foreign key to users table
+	creation_time: datetimestamp
+
+
+users:
+	id:
+	name: unique | max:64 chars
+	display_name:  max:64 chars
+	creation_time: datetimestamp
+	description: 
+	
+
+MongoDB:
+- Export board: Create a DB where who exported what file should be saved:
+	DB name: project_board
+	Collection name: project_board
+	Document: {
+		"tame_id": <123>,
+		"exported_file": "https:/www.exmaple.com/file.txt"
+	}
+
+
+
+
+
+
